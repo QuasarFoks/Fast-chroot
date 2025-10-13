@@ -64,7 +64,7 @@ func fatalf(format string, args ...interface{}) {
 }
 
 func printHelp() {
-	fmt.Printf(`usage: artix-chroot chroot-dir [command...]
+	fmt.Printf(`usage: fast-chroot chroot-dir [command...]
 
     -h                  Show this help
     -u <user>[:group]   Run as specified user
@@ -147,7 +147,7 @@ func setupResolvConf(chrootDir string) {
 }
 func checkMountpoint(chrootDir string) {
 	// Пока просто предупреждение — без реальной проверки
-	fmt.Printf("⚠️  Warning: %s is not checked as mountpoint (not implemented yet)\n", chrootDir)
+	fmt.Printf(" Warning: %s is not checked as mountpoint (not implemented yet)\n", chrootDir)
 }
 func runChroot(chrootDir string, userSpec string, cmdArgs []string) {
 	// Собираем аргументы для chroot
@@ -182,7 +182,7 @@ func umountEssentials(chrootDir string) {
 		cmd.Stderr = os.Stderr
 
 		if err := cmd.Run(); err != nil {
-			fmt.Fprintf(os.Stderr, "⚠️  Failed to unmount %s: %v\n", target, err)
+			fmt.Fprintf(os.Stderr, " Failed to unmount %s: %v\n", target, err)
 			// Не падаем — просто предупреждаем
 		} else {
 			fmt.Printf("→ Unmounted %s\n", target)
